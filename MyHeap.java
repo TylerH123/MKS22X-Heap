@@ -64,11 +64,20 @@ public class MyHeap{
     }
   }
 
+  public static void heapify(int[] data){
+    for (int i = data.length-1; i >= 0; i--){
+      //push the value down
+      pushDown(data,data.length,i);
+    }
+  }
+
   public static void main(String[] args){
     int[] arr = new int[]{16,100,90,7,18,60,50,3,2,17};
     int[] arr2 = new int[]{70,18,60,9,6,50,40,5,4,3,2,90,6};
     int[] arr3 = new int[]{100,18,60,9,6,50,40,5,4,3,2,90,6};
     int[] arr4 = new int[]{16,100,90,7,18,60,50,3,2,14};
+    int[] arr5 = new int[]{2,5,20,3,9,18,11,7,8,11,6};
+    heapify(arr5);
     //pushUp(arr3,11);
     //pushUp(arr2,11);
     //pushDown(arr,10,0);
@@ -77,5 +86,6 @@ public class MyHeap{
     //System.out.println(Arrays.toString(arr2));
     //System.out.println(Arrays.toString(arr3));
     //System.out.println(Arrays.toString(arr4));
+    System.out.println(Arrays.toString(arr5));
   }
 }
