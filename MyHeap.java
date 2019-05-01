@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyHeap{
 
   //swap 2 values in an array
@@ -9,9 +10,9 @@ public class MyHeap{
 
   private static void pushDown(int[]data,int size,int index){
     //only run if has children
-    while (index * 2 + 1 < size - 1){
+    while (index * 2 + 1 < size){
       //check if has second child
-      if (index * 2 + 2 < size - 1){
+      if (index * 2 + 2 < size){
         int og = data[index];
         int c1 = data[index * 2 + 1];
         int c2 = data[index * 2 + 2];
@@ -35,9 +36,15 @@ public class MyHeap{
         //swap child and index
         swap(data,index,index*2+1);
         //update index
-        index = index * 2 + 1;  
+        index = index * 2 + 1;
       }
     }
   }
 
+
+  public static void main(String[] args){
+    int[] arr = new int[]{16,100,90,7,18,60,50,3,2,17};
+    pushDown(arr,10,0);
+    System.out.println(Arrays.toString(arr));
+  }
 }
