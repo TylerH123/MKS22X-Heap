@@ -71,21 +71,36 @@ public class MyHeap{
     }
   }
 
+  public static void heapsort(int[] data){
+    //first heapify the array
+    heapify(data);
+    //partition is the part where the array is already sorted
+    int partition = data.length - 1;
+    //loop only up to the sorted part
+    for (int i = partition; i >= 0; i--){
+      swap(data,0,i);
+      pushDown(data,partition,0);
+      partition--;
+    }
+  }
+
   public static void main(String[] args){
     int[] arr = new int[]{16,100,90,7,18,60,50,3,2,17};
     int[] arr2 = new int[]{70,18,60,9,6,50,40,5,4,3,2,90,6};
     int[] arr3 = new int[]{100,18,60,9,6,50,40,5,4,3,2,90,6};
     int[] arr4 = new int[]{16,100,90,7,18,60,50,3,2,14};
     int[] arr5 = new int[]{2,5,20,3,9,18,11,7,8,11,6};
-    heapify(arr5);
+    heapsort(arr);
+    System.out.println(Arrays.toString(arr));
+    //heapify(arr5);
     //pushUp(arr3,11);
     //pushUp(arr2,11);
     //pushDown(arr,10,0);
     //pushDown(arr4,10,0);
-    //System.out.println(Arrays.toString(arr));
+    //System.out.println(Arrays.toString(arr);
     //System.out.println(Arrays.toString(arr2));
     //System.out.println(Arrays.toString(arr3));
     //System.out.println(Arrays.toString(arr4));
-    System.out.println(Arrays.toString(arr5));
+    //System.out.println(Arrays.toString(arr5));
   }
 }
