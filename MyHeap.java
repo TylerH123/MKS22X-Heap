@@ -78,8 +78,11 @@ public class MyHeap{
     int partition = data.length - 1;
     //loop only up to the sorted part
     for (int i = partition; i >= 0; i--){
+      //swap the max with the last num
       swap(data,0,i);
+      //pushdown till the max is correct
       pushDown(data,partition,0);
+      //increase the partition 
       partition--;
     }
   }
