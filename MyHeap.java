@@ -41,10 +41,22 @@ public class MyHeap{
     }
   }
 
+  private static void pushUp(int[]data,int index){
+    //loop if index is not the root and there is parent, root is included
+    while (index > 0 && (index - 1) / 2 >= 0){
+      int parent = (index - 1) / 2;
+       //compare against the parent
+      if (data[parent] < data[index]){
+        swap(data,parent,index);
+        index = parent;
+      }
+    }
+  }
 
   public static void main(String[] args){
     int[] arr = new int[]{16,100,90,7,18,60,50,3,2,17};
-    pushDown(arr,10,0);
-    System.out.println(Arrays.toString(arr));
+
+    //pushDown(arr,10,0);
+    //System.out.println(Arrays.toString(arr));
   }
 }
