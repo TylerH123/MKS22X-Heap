@@ -9,26 +9,29 @@ public class MyHeap{
   }
 
   private static void pushDown(int[]data,int size,int index){
-    //only run if has children
+    //only run if has children and children is greater than index
     while (index * 2 + 1 < size){
       //check if has second child
       if (index * 2 + 2 < size){
-        int og = data[index];
-        int c1 = data[index * 2 + 1];
-        int c2 = data[index * 2 + 2];
+        int c1 = index * 2 + 1;
+        int c2 = index * 2 + 2;
         //compare the two children
         //if child 1 is bigger than child 2 and greater than the original
-        if (c1 > og && c1 > c2){
+        if (data[c1] > data[index] && data[c1] > data[c2]){
             swap(data,index,index*2+1);
             //update index
             index = index * 2 + 1;
         }
         //if child 2 is bigger than child 1 and greater than the original
-        else if (c2 > og && c2 >= c1){
+        else if (data[c2] > data[index] && data[c2] >= data[c1]){
           //swap with child 2
           swap(data,index,index*2+2);
           //update index
           index = index * 2 + 2;
+        }
+        //if parent is greater than both children return to break loop
+        else if (data[index] >= data[c1] && data[index] >= data[c2]){
+          return;
         }
       }
       //if only 1 child
@@ -37,6 +40,10 @@ public class MyHeap{
         swap(data,index,index*2+1);
         //update index
         index = index * 2 + 1;
+      }
+      //if parent is greater than the child return to stop loop
+      else if (data[index] >= data[index * 2 + 1]){
+        return;
       }
     }
   }
@@ -50,13 +57,22 @@ public class MyHeap{
         swap(data,parent,index);
         index = parent;
       }
+      //if parent is greater return to stop loop
+      else if (data[parent] >= data[index]){
+        return;
+      }
     }
   }
 
   public static void main(String[] args){
     int[] arr = new int[]{16,100,90,7,18,60,50,3,2,17};
-
+    int[] arr2 = new int[]{70,18,60,9,6,50,40,5,4,3,2,90,6};
+    int[] arr3 = new int[]{100,18,60,9,6,50,40,5,4,3,2,90,6};
+    pushUp(arr3,11);
+    //pushUp(arr2,11);
     //pushDown(arr,10,0);
     //System.out.println(Arrays.toString(arr));
+    //System.out.println(Arrays.toString(arr2));
+    System.out.println(Arrays.toString(arr3));
   }
 }
